@@ -30,3 +30,12 @@ const operate = (a,o,b) => {
 
 // console.log(operate(5,'*',3));
 // console.log(1/6);
+
+const display = document.getElementById('display');
+const buttons = document.getElementsByClassName('button');
+
+const btnPress = buttons.forEach(element => {
+    element.addEventListener('click', function(e) {
+
+    } )
+})
