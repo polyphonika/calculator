@@ -1,21 +1,7 @@
 Calculator HTML
 ---------------
 
-Work out how many buttons you need
-Create a container and then the amount of buttons based on this
-Add equals button
-Add clear button
-Add screen
-
-0-9 = 10
-4 operators = 14
-equals = 15
-clear = 16
-so 4x4 grid
-
-Screen = 1 unit high, 4 wide
-
-So calculator is 6 units high, 4 wide
-
-I've missed off the decimal point! So 17 buttons required which means some will have to be a bigger size. We could have 20, eg 4x5 and some being bigger. also negative sign. so 18 buttons
+Next steps:
+1. Basic styling of screen
+2. Create the functions that populate the display when you click the number buttons. You should be storing the ‘display value’ in a variable somewhere for use in the next step.
 
