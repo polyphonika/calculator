@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;;
+    }
+
+#calculator {
+    border: 1px solid lightgray;
+    height: 80vh;
+    width: 80vh;
+    display: flex;
+    flex-wrap:wrap;
+}
+
+#display {
+    flex-basis: 100%;
+    border: 3px dashed blue;
+    height: calc(100%/6);
+    /* width: 50wvh; */
+    /* width: 100%; */
+}
+
+.button {
+    flex-basis: 25%;
+    height: calc(100%/6);
+    border: 1px solid black;
+    
+}
