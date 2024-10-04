@@ -32,10 +32,32 @@ const operate = (a,o,b) => {
 // console.log(1/6);
 
 const display = document.getElementById('display');
-const buttons = document.getElementsByClassName('button');
+// const buttons = document.getElementsByClassName('button');
+const buttons = document.querySelectorAll('.button');
 
 const btnPress = buttons.forEach(element => {
     element.addEventListener('click', function(e) {
+        const btnTextValue = e.target.textContent;
+        if (/^\d+$/.test(btnTextValue)) { 
+        console.log('clicked');
+        //add number to displayValue, update display
+        updateDisplay(btnNumValue);
+        };
+    });
+  
 
-    } )
 })
+        
+
+let displayValue = [];
+
+// update display
+function updateDisplay(num) {
+    const displayElement = document.getElementById('display');
+    displayValue.push(parseInt(num));
+    displayElement.textContent = displayValue.join('');    
+}
+
+//TODO: thoughts on handling leading zero, test with real calculators
+//TODO: max screen width, scrolling
+
