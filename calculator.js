@@ -41,7 +41,7 @@ const btnPress = buttons.forEach(element => {
         if (/^\d+$/.test(btnTextValue)) { 
         console.log('clicked');
         //add number to displayValue, update display
-        updateDisplay(btnNumValue);
+        updateDisplay(btnTextValue);
         };
     });
   
