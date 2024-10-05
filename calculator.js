@@ -53,6 +53,8 @@ document.addEventListener('keydown', function(e) {
 const btnPress = buttons.forEach(element => {
     element.addEventListener('click', function(e) {
         const btnTextValue = e.target.textContent;
+
+        btnClickedClass(e);
         
         // decimal point presses        
         if (btnTextValue==='.') {
@@ -242,6 +244,16 @@ function updateDisplay(char) {
     } else {
         display.textContent = displayText;
     }
+}
+
+function btnClickedClass(e) {
+    const btn = e.target;
+    console.log(btn);
+    btn.classList.add('clicked');
+    setTimeout(() => {
+        btn.classList.remove('clicked');
+    }, 200);
+    console.log(btn);
 }
 
 function outputAll(label) {

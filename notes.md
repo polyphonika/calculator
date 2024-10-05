@@ -21,6 +21,13 @@ Next steps:
 ******************************
 Scratch area:
 All logic done, now focus on CSS
+* Button font style x
+* Screen font style x
+* Colours: buttons, screen x
+* Gaps: button gaps x
+* Button text position x
+* Overall canvas size x
+* Click transition effects* x
 
 
 

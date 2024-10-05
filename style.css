@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: grey;
+    background-color: rgb(201, 186, 186);
     display: flex;
     align-items: center;
     height: 100vh;
@@ -18,28 +18,61 @@ body {
     }
 
 #calculator {
-    border: 1px solid lightgray;
+    border: 15px solid rgb(200, 233, 243);
+    
     height: 80vh;
     width: 80vh;
     display: flex;
     flex-wrap:wrap;
+    font-family: sans-serif;
+    border-radius: 20px;
+    
 }
 
 #display {
     flex-basis: 100%;
-    border: 3px dashed blue;
+    /* border: 0px solid rgb(200, 233, 243); */
+    background-color: rgb(239, 218, 229);
+    border: 3px solid black;
+    border-radius: 15px;
     height: calc(100%/6);
     /* width: 50wvh; */
     /* width: 100%; */
     font-size: 10vh;
     display: flex;
     justify-content: flex-end;
-    font-family: 'DS-DIGI', monospace;
+    font-family: 'DS-DIGI', monospace;    
+    padding-right:5px;
+    
 }
 
 .button {
     flex-basis: 25%;
     height: calc(100%/6);
-    border: 1px solid black;
+    border: 3px solid black;
+    display: flex; /* so the inner text can be positioned */
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    border-radius: 15px;
+    background-color: rgb(239, 218, 229);        
+    transition: filter 0.1s ease;
+}
+
+.operators {
+    background-color: rgb(186, 146, 146);
+}
+
+.functions {
+    background-color: rgb(142, 132, 132);
     
+}
+
+/* Darken the element using brightness */
+.clicked {
+    filter: brightness(90%); /* Darken by reducing brightness to 70% */
+}
+
+.button:hover {
+    filter: brightness(95%);
 }
