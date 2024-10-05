@@ -56,22 +56,21 @@ function pressNum(btnTextValue) {
     if(!operator && postCalcFlag) {
         firstNumber=[];
         displayValue=[];
+        postCalcFlag=false;
     }
     
     // no leading zeros
     if (!operator) {
-        postCalcFlag=false;
         if (!(btnTextValue==0 && !firstNumber.length)) { //no leading zeroes
             firstNumber.push(parseInt(btnTextValue))
             updateDisplay(btnTextValue);
         }
     } else {
-        secondNumber.push(parseInt(btnTextValue));
-        updateDisplay(btnTextValue);
+        if (!(btnTextValue==0 && !secondNumberNumber.length)) { //no leading zeroes
+            secondNumber.push(parseInt(btnTextValue));
+            updateDisplay(btnTextValue);
+        }
     }
-
-    //!operator ? firstNumber.push(parseInt(btnTextValue)) : secondNumber.push(parseInt(btnTextValue));
-    // updateDisplay(btnTextValue);
 }
 
 function pressEquals(btnTextValue) {

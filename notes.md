@@ -9,7 +9,7 @@ Next steps:
 * ~~What happens if leading with zero~~
 * ~~Shouldn't be able to lead with zero, ignore it.~~
 * ~~what if equals pressed to early~~
-* git 
+* ~~git~~ 
 * Review project, probably move to floats at this point and negative numbers
 
 **Bugs** 
