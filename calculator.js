@@ -11,7 +11,7 @@ const buttons = document.querySelectorAll('.button');
 
 const add = (a,b) => a+b;
 const subtract = (a,b) => a-b;
-const divide = (a,b) => a/b;
+const divide = (a,b) => b!='0' ? a/b : 'error';
 const multiply = (a,b) => a*b;
 
 const operate = (a,o,b) => {
@@ -24,6 +24,30 @@ const operate = (a,o,b) => {
 
     return operations[o] ? operations[o](a, b) : null;
 }
+
+// keyboard support
+document.addEventListener('keydown', function(e) {
+    key = e.key;
+
+    // additional handling
+    if (key=='Enter') {
+        key = '=';
+    }
+
+    if (key=='x') {
+        key = '*'
+    }
+    
+    // 
+    
+    // Find the div element with the corresponding data-key value
+    const matchingButton = document.querySelector(`.button[data-key="${key}"]`);
+
+    if (matchingButton) {
+        // Simulate a click event on the matching button
+        matchingButton.click();
+    }   
+});
 
 // button listeners
 const btnPress = buttons.forEach(element => {
@@ -67,6 +91,11 @@ const btnPress = buttons.forEach(element => {
             pressClear();
          }
 
+        // if % pressed
+        if (btnTextValue==='%') {
+            pressPercent();
+         }
+
     });  
 
 })
@@ -90,11 +119,9 @@ function pressNum(btnTextValue) {
                 if (firstNumber[0]==='-') {
                     updateDisplay('-');
                     firstNumber.shift();
-                    console.log('firsta: ' + firstNumber)
                 } else {
                     updateDisplay('-');
                     firstNumber.unshift('-');
-                    console.log('firstb: ' + firstNumber)
                 }
             }
         }
@@ -117,7 +144,6 @@ function pressNum(btnTextValue) {
 }
 
 function pressEquals(btnTextValue) {
-    outputAll('testing multi ops');
     if(secondNumber.length) {
         firstNumber = operate(parseFloat(firstNumber.join('')),operator,parseFloat(secondNumber.join('')));
         // handle rounding or strange floats like 0.2*3 = 0.6000000000001;
@@ -143,7 +169,6 @@ function pressOperator(btnTextValue) {
         if(!operator) {
         operator = btnTextValue;
         displayValue=[]
-        console.log('op press');
         } else if (operator && secondNumber.length) {
             pressEquals(btnTextValue);
         }
@@ -188,20 +213,35 @@ function pressClear() {
 
 }
 
+function pressPercent() {
+    displayValue = [parseFloat((displayValue.join(''))/100)];
+    display.textContent = displayValue;
+
+    // update number values
+    if (!secondNumber.length) {
+        firstNumber = [parseFloat((firstNumber.join(''))/100)];
+    } else {
+        secondNumber = [parseFloat((secondNumber.join(''))/100)];
+    }
+}
+
 function updateDisplay(char) {
     if (char==='-') {
         if (displayValue[0]==='-') {
             displayValue.shift();
-            console.log('1: ' + displayValue);
         } else {
             displayValue.unshift('-');
-            console.log('2: ' + displayValue);
         }
     } else {    
     displayValue.push(char);    
     }  
 
-    display.textContent = displayValue.join('');  
+    const displayText = display.textContent = displayValue.join('');  
+    if (displayText.length > 16) {
+        display.textContent = displayText.slice(0, 16); // Trim to 16 characters
+    } else {
+        display.textContent = displayText;
+    }
 }
 
 function outputAll(label) {
@@ -212,6 +252,8 @@ function outputAll(label) {
     console.log('Operator: ' + operator);
     console.log('Display Value: ' + displayValue + ', ' + typeof displayValue);
 }
+
+
 
 
 
