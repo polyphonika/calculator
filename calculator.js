@@ -30,8 +30,13 @@ const btnPress = buttons.forEach(element => {
     element.addEventListener('click', function(e) {
         const btnTextValue = e.target.textContent;
         
+        // decimal point presses        
+        if (btnTextValue==='.') {
+            pressDecimal(e)
+        }        
+        
         // number presses
-        if (/^\d+$/.test(btnTextValue)) {
+        if (/^[\d]$/.test(btnTextValue)) {
             pressNum(btnTextValue);
         }
 
@@ -62,12 +67,12 @@ function pressNum(btnTextValue) {
     // no leading zeros
     if (!operator) {
         if (!(btnTextValue==0 && !firstNumber.length)) { //no leading zeroes
-            firstNumber.push(parseInt(btnTextValue))
+            firstNumber.push((btnTextValue))
             updateDisplay(btnTextValue);
         }
     } else {
         if (!(btnTextValue==0 && !secondNumberNumber.length)) { //no leading zeroes
-            secondNumber.push(parseInt(btnTextValue));
+            secondNumber.push((btnTextValue));
             updateDisplay(btnTextValue);
         }
     }
@@ -76,7 +81,10 @@ function pressNum(btnTextValue) {
 function pressEquals(btnTextValue) {
     outputAll('testing multi ops');
     if(secondNumber.length) {
-        firstNumber = operate(parseInt(firstNumber.join('')),operator,parseInt(secondNumber.join('')));
+        firstNumber = operate(parseFloat(firstNumber.join('')),operator,parseFloat(secondNumber.join('')));
+        // handle rounding or strange floats like 0.2*3 = 0.6000000000001;
+        firstNumber = parseFloat(firstNumber.toFixed(14));
+        // firstNumber = 
         displayValue = [];
         updateDisplay(firstNumber);    
         firstNumber = [firstNumber];
@@ -104,8 +112,17 @@ function pressOperator(btnTextValue) {
     }
     // updateDisplay(btnTextValue); 
 }
+
+function pressDecimal(e) {
+    if (!displayValue.includes('.')) {
+        pressNum('.');
+        // e.target.style.backgroundColor = 'darkgray';    
+    }
+}
  
 function updateDisplay(char) {
+    // check to see if we should disable decimal button
+    // checkDecimal();
     const displayElement = document.getElementById('display');
     displayValue.push(char);
     displayElement.textContent = displayValue.join('');    
@@ -119,4 +136,9 @@ function outputAll(label) {
     console.log('Operator: ' + operator);
     console.log('Display Value: ' + displayValue + ', ' + typeof displayValue);
 }
+
+
+
+
+
 
