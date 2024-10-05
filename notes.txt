@@ -2,3 +2,14 @@ Calculator HTML
 ---------------
 
 Next steps:
+Make the calculator work! You’ll need to store the first number and second number that are input into the calculator, utilize the operator that the user selects, and then operate() on the two numbers when the user presses the “=” key.
+You should already have the code that can populate the display, so once operate() has been called, update the display with the ‘solution’ to the operation.
+This is the hardest part of the project. You need to figure out how to store all the values and call the operate function with them. Don’t feel bad if it takes you a while to figure out the logic.
+
+Work out the logic here:
+* type number, keep typing xx
+* when operator pressed, store operator
+* switch to num2 array then start typing, update screen
+* when equals pressed, run operate() and display result on screen
+* store result in num1
+* decide what happens next, if nums are typed vs if operator is pressed
