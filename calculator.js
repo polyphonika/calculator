@@ -62,6 +62,11 @@ const btnPress = buttons.forEach(element => {
             pressBackspace();
          }
 
+         // if AC(Clear) pressed
+        if (btnTextValue==='AC') {
+            pressClear();
+         }
+
     });  
 
 })
@@ -155,12 +160,12 @@ function pressDecimal(e) {
 
 function pressBackspace() {
     // update display
-    const displayElement = document.getElementById('display');
+    
     if (displayValue.length>1) {
         displayValue.pop();
-        displayElement.textContent = displayValue.join('');  
+        display.textContent = displayValue.join('');  
     } else {
-        displayElement.textContent = 0; 
+        display.textContent = 0; 
     }
 
     // update number values
@@ -169,13 +174,21 @@ function pressBackspace() {
     } else {
         secondNumber.pop();
     }
-    // update whichever working value
+    
+}
 
+function pressClear() {
+    firstNumber = []
+    secondNumber = []
+    operator;
+    postCalcFlag;
+    displayValue = [];
+
+    display.textContent = 0;
 
 }
 
 function updateDisplay(char) {
-    const displayElement = document.getElementById('display');
     if (char==='-') {
         if (displayValue[0]==='-') {
             displayValue.shift();
@@ -188,7 +201,7 @@ function updateDisplay(char) {
     displayValue.push(char);    
     }  
 
-    displayElement.textContent = displayValue.join('');  
+    display.textContent = displayValue.join('');  
 }
 
 function outputAll(label) {
