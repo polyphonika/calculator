@@ -9,7 +9,7 @@ Next steps:
 * ~~Pressing = before entering all of the numbers or an operator could cause problems!~~
 * Pressing “clear” should wipe out any existing data. Make sure the user is really starting fresh after pressing “clear”
 * Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
-* Backspace button
+* ~~Backspace button~~
 * Keyboard support
 * Check chatGPT for logic tidying
 * CSS, overall styling
@@ -19,6 +19,10 @@ Next steps:
 
 ******************************
 Scratch area:
+* Clear button
+    Whatever is on screen, update and remove last value from array
+    if array empty, just display 0
+    if working on num 1, update num1, else num2
 
 
 

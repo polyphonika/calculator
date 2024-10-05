@@ -50,18 +50,23 @@ const btnPress = buttons.forEach(element => {
            pressEquals();
         }    
         
+        // if negate button pressed
         if (btnTextValue==='+/-') {
             if (displayValue.length) {
                 pressNum('-');
             }
-         } 
+        }
+        
+        // if backspace pressed
+        if (btnTextValue==='⌫') {
+            pressBackspace();
+         }
 
     });  
 
 })
 
 function pressNum(btnTextValue) {
-    console.log('num press');
 
     // reset if post calculation so we start again
     if(!operator && postCalcFlag) {
@@ -73,7 +78,7 @@ function pressNum(btnTextValue) {
     // no leading zeros
     if (!operator) {
         if (!(btnTextValue==0 && !firstNumber.length)) { //no leading zeroes
-            if(btnTextValue!='+/-') {
+            if(btnTextValue!='-') {
                 firstNumber.push((btnTextValue))
                 updateDisplay(btnTextValue);
             } else {
@@ -90,7 +95,7 @@ function pressNum(btnTextValue) {
         }
     } else {
         if (!(btnTextValue==0 && !secondNumberNumber.length)) { //no leading zeroes
-            if(btnTextValue!='+/-') {
+            if(btnTextValue!='-') {
                 secondNumber.push((btnTextValue))
                 updateDisplay(btnTextValue);
             } else {
@@ -148,11 +153,27 @@ function pressDecimal(e) {
     }
 }
 
-function pressNegate() {
-    // updateDisplay('-');
-    pressNum('-');
+function pressBackspace() {
+    // update display
+    const displayElement = document.getElementById('display');
+    if (displayValue.length>1) {
+        displayValue.pop();
+        displayElement.textContent = displayValue.join('');  
+    } else {
+        displayElement.textContent = 0; 
+    }
+
+    // update number values
+    if (!secondNumber.length) {
+        firstNumber.pop();
+    } else {
+        secondNumber.pop();
+    }
+    // update whichever working value
+
+
 }
- 
+
 function updateDisplay(char) {
     const displayElement = document.getElementById('display');
     if (char==='-') {
