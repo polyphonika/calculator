@@ -48,7 +48,13 @@ const btnPress = buttons.forEach(element => {
         // if equals pressed
         if (btnTextValue==='=') {
            pressEquals();
-        }        
+        }    
+        
+        if (btnTextValue==='+/-') {
+            if (displayValue.length) {
+                pressNum('-');
+            }
+         } 
 
     });  
 
@@ -67,13 +73,35 @@ function pressNum(btnTextValue) {
     // no leading zeros
     if (!operator) {
         if (!(btnTextValue==0 && !firstNumber.length)) { //no leading zeroes
-            firstNumber.push((btnTextValue))
-            updateDisplay(btnTextValue);
+            if(btnTextValue!='+/-') {
+                firstNumber.push((btnTextValue))
+                updateDisplay(btnTextValue);
+            } else {
+                if (firstNumber[0]==='-') {
+                    updateDisplay('-');
+                    firstNumber.shift();
+                    console.log('firsta: ' + firstNumber)
+                } else {
+                    updateDisplay('-');
+                    firstNumber.unshift('-');
+                    console.log('firstb: ' + firstNumber)
+                }
+            }
         }
     } else {
         if (!(btnTextValue==0 && !secondNumberNumber.length)) { //no leading zeroes
-            secondNumber.push((btnTextValue));
-            updateDisplay(btnTextValue);
+            if(btnTextValue!='+/-') {
+                secondNumber.push((btnTextValue))
+                updateDisplay(btnTextValue);
+            } else {
+                if (secondNumber[0]==='-') {
+                    updateDisplay('-');
+                    secondNumber.shift();
+                } else {
+                    updateDisplay('-');
+                    secondNumber.unshift('-');
+                }
+            }
         }
     }
 }
@@ -119,13 +147,27 @@ function pressDecimal(e) {
         // e.target.style.backgroundColor = 'darkgray';    
     }
 }
+
+function pressNegate() {
+    // updateDisplay('-');
+    pressNum('-');
+}
  
 function updateDisplay(char) {
-    // check to see if we should disable decimal button
-    // checkDecimal();
     const displayElement = document.getElementById('display');
-    displayValue.push(char);
-    displayElement.textContent = displayValue.join('');    
+    if (char==='-') {
+        if (displayValue[0]==='-') {
+            displayValue.shift();
+            console.log('1: ' + displayValue);
+        } else {
+            displayValue.unshift('-');
+            console.log('2: ' + displayValue);
+        }
+    } else {    
+    displayValue.push(char);    
+    }  
+
+    displayElement.textContent = displayValue.join('');  
 }
 
 function outputAll(label) {
